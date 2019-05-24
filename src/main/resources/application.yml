@@ -1,2 +1,14 @@
 server:
   port: 8881
+
+#thymeleaf start
+spring:
+  thymeleaf:
+    cache: false # 开发时关闭缓存
+    content-type: text/html # Content-Type value.
+    enabled: true # 是否启用
+    encoding: UTF-8
+    mode: LEGACYHTML5
+    prefix: classpath:/templates/
+    suffix: .html
+#thymeleaf end
