@@ -11,4 +11,37 @@ spring:
     mode: LEGACYHTML5
     prefix: classpath:/templates/
     suffix: .html
+  datasource:
+    url: jdbc:mysql://192.168.1.8/database1?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 2
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 1
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
 #thymeleaf end
+
+
+
+# mybatis start
+mybatis:
+  type-aliases-package: com.rudy.miaosha.domain   # 别名包
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100  # 每次去数据库拿取的条数
+    default-statement-timeout: 3000
+  mapper-locations: classpath:com/rudy/miaosha/mapper/*.xml
+# mybatis end
+
+#jdbc
+#jdbc end
