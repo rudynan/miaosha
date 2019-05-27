@@ -3,6 +3,7 @@ package com.rudy.miaosha.controller;
 import com.rudy.miaosha.domain.UserInfo;
 import com.rudy.miaosha.result.CodeMsg;
 import com.rudy.miaosha.result.Result;
+import com.rudy.miaosha.service.RedisService;
 import com.rudy.miaosha.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,8 @@ public class TestController {
 
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private RedisService redisService;
     @RequestMapping(value = "/test")
     @ResponseBody
     public Result<UserInfo> testMethod(int id) {
@@ -34,5 +36,13 @@ public class TestController {
 
         model.addAttribute("name", "rudynan");
         return "hello";
+    }
+
+    @RequestMapping("/redis/get")
+    @ResponseBody
+    public Result<Long> redisGet() throws Exception {
+        Long key1 = redisService.get("key1", Long.class);
+        return Result.success(key1);
+
     }
 }

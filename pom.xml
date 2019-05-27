@@ -72,6 +72,18 @@
             <version>1.1.10</version>
         </dependency>
         <!--druid end-->
+
+        <!--redis依赖-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.28</version>
+        </dependency>
+        <!--redis依赖end-->
     </dependencies>
 
 </project>
