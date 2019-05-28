@@ -84,6 +84,18 @@
             <version>1.2.28</version>
         </dependency>
         <!--redis依赖end-->
+
+        <!--引入MD5依赖-->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.7</version>
+        </dependency>
+        <!--引入MD5依赖end-->
     </dependencies>
 
 </project>
