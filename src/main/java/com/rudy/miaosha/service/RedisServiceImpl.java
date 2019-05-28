@@ -1,14 +1,12 @@
 package com.rudy.miaosha.service;
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonAnyFormatVisitor;
-import com.rudy.miaosha.redis.RedisConfig;
+import com.rudy.miaosha.redis.KeyPrefix;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
+
 
 @Service
 public class RedisServiceImpl implements RedisService {
@@ -18,7 +16,7 @@ public class RedisServiceImpl implements RedisService {
     private JedisPool jedisPool;
 
     @Override
-    public <T> boolean set(String key, T value) throws Exception {
+    public <T> boolean set(KeyPrefix keyPrefix, String key, T value) throws Exception {
 
         Jedis jedis = null;
         try {
@@ -27,12 +25,23 @@ public class RedisServiceImpl implements RedisService {
             if (str == null || str.length() <=0){
                 return false;
             }
-            jedis.set(key,str);
+            String finalKey = keyPrefix.getPrefix()+key;
+            int expireSeconds = keyPrefix.expireSeconds();
+            if ( expireSeconds<= 0){
+
+                jedis.set(finalKey,str);
+            }else {
+                jedis.setex(finalKey,expireSeconds,str);
+
+            }
             return true;
         }finally {
             returnPool(jedis);
         }
     }
+
+
+
 
     private <T> String obj2str(T value) {
         if (value == null){
@@ -50,18 +59,57 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public <T> T get(String key,Class<T> clazz) {
+    public <T> T get(KeyPrefix keyPrefix,String key,Class<T> clazz) {
 
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            String str = jedis.get(key);
+            String str = jedis.get(keyPrefix.getPrefix()+key);
             return str2Obj(str,clazz);
         }finally {
             returnPool(jedis);
         }
     }
 
+    @Override
+    public Long incr(KeyPrefix keyPrefix, String key) {
+
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            Long resp = jedis.incr(keyPrefix.getPrefix()+key);
+            return resp;
+        }finally {
+            returnPool(jedis);
+        }
+    }
+    /*
+        如果减的这个值不是数值类型,那么数据设为0然后减1
+     */
+    @Override
+    public Long decr(KeyPrefix keyPrefix, String key) {
+
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            Long resp = jedis.decr(keyPrefix.getPrefix()+key);
+            return resp;
+        }finally {
+            returnPool(jedis);
+        }
+    }
+    @Override
+    public Boolean exist(KeyPrefix keyPrefix, String key) {
+
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            Boolean exists = jedis.exists(keyPrefix.getPrefix() + key);
+            return exists;
+        }finally {
+            returnPool(jedis);
+        }
+    }
     private <T> T str2Obj(String str, Class<T> clazz) {
         if (str == null || str.length() <= 0 || clazz == null ){
             return null;
