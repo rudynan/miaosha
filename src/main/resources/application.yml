@@ -48,11 +48,11 @@ mybatis:
 
 
 #redis
-#redis:
-#  host: 192.168.200.127
-#  port: 6379
-#  timeout: 3
-#  poolMaxTotal: 10
-#  poolMaxIdle: 10
-#  poolMaxWait: 3
+redis:
+  host: 192.168.200.127
+  port: 6379
+  timeout: 3
+  poolMaxTotal: 10
+  poolMaxIdle: 10
+  poolMaxWait: 3
 #redis end
