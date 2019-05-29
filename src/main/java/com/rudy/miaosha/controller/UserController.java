@@ -16,7 +16,7 @@ public class UserController {
 
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @GetMapping(value = "/login")
+    @GetMapping(value = "/")
     public String  tologin() {
         return "login";
     }
