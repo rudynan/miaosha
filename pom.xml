@@ -104,7 +104,13 @@
             <version>3.3.7</version>
         </dependency>
         <!--引入bootstrap依赖end-->
-
+        <!--yml依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--yml依赖end-->
     </dependencies>
 
 </project>
