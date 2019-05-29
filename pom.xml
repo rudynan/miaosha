@@ -96,6 +96,15 @@
             <version>3.7</version>
         </dependency>
         <!--引入MD5依赖end-->
+
+        <!--引入bootstrap依赖-->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.7</version>
+        </dependency>
+        <!--引入bootstrap依赖end-->
+
     </dependencies>
 
 </project>
