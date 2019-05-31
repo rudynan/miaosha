@@ -111,6 +111,26 @@
             <optional>true</optional>
         </dependency>
         <!--yml依赖end-->
+
+        <!--quartz依赖-->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-jobs</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+        <!--quartz依赖end-->
+
+        <!--引入jsr303校验依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <!--引入jsr303校验依赖end-->
     </dependencies>
 
 </project>

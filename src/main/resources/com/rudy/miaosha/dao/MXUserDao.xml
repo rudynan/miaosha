@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.rudy.miaosha.dao.MXUserDao">
+
+    <resultMap id="userInfoMap" type="com.rudy.miaosha.domain.MXUser">
+        <result column="id" property="id" jdbcType="BIGINT" />
+        <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="salt" property="salt" jdbcType="VARCHAR" />
+        <result column="head" property="head" jdbcType="VARCHAR" />
+        <result column="register_date" property="registerDate" jdbcType="TIMESTAMP" />
+        <result column="lastLogin_date" property="lastLoginDate" jdbcType="TIMESTAMP" />
+        <result column="login_count" property="loginCount" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="baseSql">
+      id,nickname,password,salt,head,register_date,last_login_date,login_count
+    </sql>
+
+    <select id="getUserById" parameterType="long" resultMap="userInfoMap">
+      SELECT <include refid="baseSql"/> FROM miaosha_user_info WHERE id = #{id}
+    </select>
+
+
+
+
+    <!--<insert id="insertWebInvoiceUnionInfo" parameterType="com.ticketservice.app.model.WebInvoiceUnionInfo">
+	   INSERT INTO qp_gxpt_info (user_id,union_id,add_time) VALUES(
+	       #{userId},
+	       #{unionId},
+	       #{addTime}
+	   )
+	</insert>-->
+
+
+    <!--<select id="selectUnionInfoByMemberId" parameterType="String" resultType="com.ticketservice.app.model.UnionInfo">
+	     select member_id memberId,access_token accessToken from qp_fpt_info where member_id = #{memberId}
+	</select>
+
+
+    <update id="updateUnionInfoByMemberID" parameterType="com.ticketservice.app.model.UnionInfo">
+        UPDATE qp_fpt_info
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="accessToken != null">
+                access_token = #{accessToken},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="addTime != null">
+                add_time = #{addTime}
+            </if>
+        </set>
+        where member_id = #{memberId}
+    </update>-->
+
+
+
+
+</mapper>

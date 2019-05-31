@@ -24,8 +24,7 @@ public class TestController {
     @RequestMapping(value = "/test")
     @ResponseBody
     public Result<UserInfo> testMethod(int id) {
-        UserInfo userinfo = userService.getUserinfoById(id);
-        return Result.success(userinfo);
+        return null;
     }
     @ResponseBody
     @RequestMapping(value = "/testError")

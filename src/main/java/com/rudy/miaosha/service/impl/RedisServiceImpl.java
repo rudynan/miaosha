@@ -1,7 +1,8 @@
-package com.rudy.miaosha.service;
+package com.rudy.miaosha.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.rudy.miaosha.redis.KeyPrefix;
+import com.rudy.miaosha.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;

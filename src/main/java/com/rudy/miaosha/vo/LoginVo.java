@@ -1,7 +1,18 @@
 package com.rudy.miaosha.vo;
 
+import com.rudy.miaosha.validator.isMobile;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
+
 public class LoginVo {
+
+    @NotBlank(message = "手机号不能为空")
+    @isMobile
     private String mobile;
+
+    @NotBlank(message = "密码不能为空")
+    @Length(min = 32)
     private String password;
 
     public String getMobile() {
