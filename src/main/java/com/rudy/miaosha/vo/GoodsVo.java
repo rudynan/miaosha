@@ -1,38 +1,21 @@
-package com.rudy.miaosha.domain;
+package com.rudy.miaosha.vo;
 
-import java.math.BigDecimal;
+import com.rudy.miaosha.domain.Goods;
+
 import java.util.Date;
 
-public class MiaoshaGoods {
-    private Long id;
-    private Long goodsId;
-    private BigDecimal miaoshaPrice;
+public class GoodsVo extends Goods {
+    private Double miaoshaPrice;
     private Integer stockCount;
     private Date startDate;
     private Date endDate;
 
-    public BigDecimal getMiaoshaPrice() {
+    public Double getMiaoshaPrice() {
         return miaoshaPrice;
     }
 
-    public void setMiaoshaPrice(BigDecimal miaoshaPrice) {
+    public void setMiaoshaPrice(Double miaoshaPrice) {
         this.miaoshaPrice = miaoshaPrice;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getGoodsId() {
-        return goodsId;
-    }
-
-    public void setGoodsId(Long goodsId) {
-        this.goodsId = goodsId;
     }
 
     public Integer getStockCount() {
@@ -61,10 +44,8 @@ public class MiaoshaGoods {
 
     @Override
     public String toString() {
-        return "MiaoshaGoods{" +
-                "id=" + id +
-                ", goodsId=" + goodsId +
-                ", miaoshaPrice=" + miaoshaPrice +
+        return "GoodsVo{" +
+                "miaoshaPrice=" + miaoshaPrice +
                 ", stockCount=" + stockCount +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
