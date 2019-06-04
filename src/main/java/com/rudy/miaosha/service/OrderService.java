@@ -9,4 +9,6 @@ public interface OrderService {
     MiaoshaOrder getMiaoshaOrderByUserIdGoodId(Long userId,Long goodsId) throws Exception;
 
     OrderInfo createOrder(MXUser user, GoodsVo goodsVo) throws Exception;
+
+
 }

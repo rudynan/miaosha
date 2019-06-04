@@ -18,9 +18,9 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     filters: stat
-    maxActive: 2
+    maxActive: 1000
     maxWait: 60000
-    minIdle: 1
+    minIdle: 500
     timeBetweenEvictionRunsMillis: 60000
     minEvictableIdleTimeMillis: 300000
     validationQuery: select 1
@@ -51,8 +51,8 @@ mybatis:
 redis:
   host: 192.168.200.127
   port: 6379
-  timeout: 3
-  poolMaxTotal: 10
-  poolMaxIdle: 10
-  poolMaxWait: 3
+  timeout: 10
+  poolMaxTotal: 1000
+  poolMaxIdle: 500
+  poolMaxWait: 500
 #redis end

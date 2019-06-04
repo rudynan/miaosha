@@ -11,10 +11,11 @@ import com.rudy.miaosha.service.OrderService;
 import com.rudy.miaosha.vo.GoodsVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+@Controller
 @RequestMapping("/miaosha")
 public class MiaoshaController {
 
@@ -33,12 +34,12 @@ public class MiaoshaController {
         }
         GoodsVo goodsVoById = goodsService.getGoodsVoById(goodsId);
         if (goodsVoById.getStockCount()<=0){
-            model.addAttribute("errMsg", CodeMsg.MIAO_SHA_OVER.getMsg());
+            model.addAttribute("errmsg", CodeMsg.MIAO_SHA_OVER.getMsg());
             return "miaosha_fail";
         }
         MiaoshaOrder orderByUserIdGoodId = orderService.getMiaoshaOrderByUserIdGoodId(user.getId(), goodsId);
         if (orderByUserIdGoodId != null){
-            model.addAttribute("errMsg", CodeMsg.MIAO_SHA_REPEAT.getMsg());
+            model.addAttribute("errmsg", CodeMsg.MIAO_SHA_REPEAT.getMsg());
             return "miaosha_fail";
         }
         // 减库存 下订单 写秒杀订单

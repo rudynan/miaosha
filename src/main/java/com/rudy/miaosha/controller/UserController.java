@@ -1,5 +1,6 @@
 package com.rudy.miaosha.controller;
 
+import com.rudy.miaosha.domain.MXUser;
 import com.rudy.miaosha.redis.UserKey;
 import com.rudy.miaosha.result.CodeMsg;
 import com.rudy.miaosha.result.Result;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -59,5 +61,11 @@ public class UserController {
         return Result.success("登录成功");
 
 
+    }
+    @RequestMapping("/getuser")
+    @ResponseBody
+    public Result<MXUser> getUser(MXUser user, HttpServletRequest request){
+        logger.info("获取用户信息为:{}", user);
+        return Result.success(user);
     }
 }
