@@ -1,18 +1,13 @@
 package com.rudy.miaosha.controller;
 
 import com.rudy.miaosha.domain.MXUser;
-import com.rudy.miaosha.redis.UserKey;
-import com.rudy.miaosha.result.CodeMsg;
+
 import com.rudy.miaosha.result.Result;
-import com.rudy.miaosha.service.RedisService;
+
 import com.rudy.miaosha.service.UserService;
-import com.rudy.miaosha.util.UUIDUtil;
-import com.rudy.miaosha.util.ValidatorUtil;
+
 import com.rudy.miaosha.vo.LoginVo;
-import com.sun.corba.se.spi.ior.IdentifiableFactory;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,9 +51,9 @@ public class UserController {
 //        }
         /****参数验证end****/
 
-        boolean login = userService.login(response,loginVo);
+        String  login = userService.login(response,loginVo);
         logger.info("登录结果为:{}", login);
-        return Result.success("登录成功");
+        return Result.success(login);
 
 
     }

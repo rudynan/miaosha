@@ -10,7 +10,6 @@ import com.rudy.miaosha.service.UserService;
 import com.rudy.miaosha.util.MD5Util;
 import com.rudy.miaosha.util.UUIDUtil;
 import com.rudy.miaosha.vo.LoginVo;
-import com.sun.deploy.net.HttpResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +30,7 @@ public class UserServiceImpl implements UserService {
     RedisService redisService;
 
     @Override
-    public boolean login(HttpServletResponse response, LoginVo loginVo) throws Exception {
+    public String  login(HttpServletResponse response, LoginVo loginVo) throws Exception {
         String mobile = loginVo.getMobile();
         Long mobileNum = Long.parseLong(mobile);
         MXUser userById = mxUserDao.getUserById(mobileNum);
@@ -42,7 +41,7 @@ public class UserServiceImpl implements UserService {
             if (StringUtils.equals(fpass, userById.getPassword())){
                 String token = UUIDUtil.uuid();
                 this.addToken(response,token, userById);
-                return true;
+                return token;
             }else {
                 throw new GlobleException(CodeMsg.PASSWORD_ERROR);
             }

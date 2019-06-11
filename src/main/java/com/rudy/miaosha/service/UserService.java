@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface UserService {
 
-    public boolean login(HttpServletResponse response, LoginVo loginVo)throws Exception;
+    public String login(HttpServletResponse response, LoginVo loginVo)throws Exception;
 
     public MXUser getUserByToken(HttpServletResponse response,String token) throws Exception;
 

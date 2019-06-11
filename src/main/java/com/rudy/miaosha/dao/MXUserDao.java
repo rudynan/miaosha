@@ -8,4 +8,6 @@ public interface MXUserDao {
 
     MXUser getUserById(Long id) throws Exception;
 
+    void addUser() throws Exception;
+
 }
