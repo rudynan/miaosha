@@ -67,6 +67,19 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public MXUser getUserById(long id) throws Exception {
+        MXUser user = redisService.get(UserKey.getById, id + "", MXUser.class);
+        if (user != null){
+            return user;
+        }
+        MXUser userById = mxUserDao.getUserById(id);
+        if (userById != null){
+            boolean set = redisService.set(UserKey.getById, id + "", userById);
+        }
+        return userById;
+    }
+
 
     private void addToken(HttpServletResponse response,String token,MXUser userById) throws Exception {
 

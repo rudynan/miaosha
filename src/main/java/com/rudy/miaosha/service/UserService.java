@@ -12,4 +12,6 @@ public interface UserService {
 
     public MXUser getUserByToken(HttpServletResponse response,String token) throws Exception;
 
+    public MXUser getUserById(long id)throws Exception;
+
 }
